@@ -11,7 +11,7 @@ class Auth extends Database
   
       return true;
     } catch (PDOException $e) {
-      return $e->getMessage();
+      self::error("db_error", $e->getCode(), $e->getMessage());
     }
   }
 
@@ -27,7 +27,7 @@ class Auth extends Database
 
       return true;
     } catch (PDOException $e) {
-      return $e->getMessage();
+      self::error("db_error", $e->getCode(), $e->getMessage());
     }
   }
 }

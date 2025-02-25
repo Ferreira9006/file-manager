@@ -34,6 +34,5 @@ $code = $_GET['error_code'];
         </div>
       </div>
     </div>
-    <script src="assets/js/script.js"></script>
   </body>
 </html>

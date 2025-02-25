@@ -34,7 +34,7 @@ class Database
           'error_message' => $errorMessage,
           'error_code' => $errorCode
         ]);
-        header("Location: /db_error.php?$query");
+        header("Location: ./db_error?$query");
         exit();
     }
   }
