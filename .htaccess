@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Set the base folder for the project (adjust this if your folder name is different)
+RewriteBase /AzerothCore-Registration-Page/
+
+# Custom 404 Page
+ErrorDocument 404 /AzerothCore-Registration-Page/app/errors/404.php
+
+# Allow direct access to existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect /index to index.php
+RewriteRule ^index$ index.php [L]
+
+# Redirect only specific error pages in "app/errors"
+RewriteRule ^(db_error|server_error|404)$ app/errors/$1.php [L,QSA]

@@ -23,5 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       return;
     }
 
-    Auth::Register($username, $email, $salt, $verifier);
+    if (Auth::Register($username, $email, $salt, $verifier)){
+      echo "<div class='alert alert-success' role='alert'> Account was created. </div>";
+      return;
+    }
 }

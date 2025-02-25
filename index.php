@@ -19,7 +19,7 @@
               <p><?= $description ?></p>
               <hr class="mb-5">
 
-              <?php include 'app/register.php' ?>
+              <?php include 'app/controllers/register.php' ?>
               <form action="" method="post">
                 <div class="form-group row mb-3">
                   <label for="username" class="col-sm-3 col-form-label">Username</label>

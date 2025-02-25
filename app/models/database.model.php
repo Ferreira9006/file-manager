@@ -22,7 +22,20 @@ class Database
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Set the PDO error mode to exception
       return $conn;
     } catch (PDOException $e) {
-      die("Connection failed: " . $e->getMessage());
+      self::error("db_error", $e->getCode(), $e->getMessage());
+    }
+  }
+
+  protected static function error($errorType, $errorCode, $errorMessage){
+    switch ($errorType)
+    {
+      case "db_error":
+        $query = http_build_query([
+          'error_message' => $errorMessage,
+          'error_code' => $errorCode
+        ]);
+        header("Location: /db_error.php?$query");
+        exit();
     }
   }
 }
