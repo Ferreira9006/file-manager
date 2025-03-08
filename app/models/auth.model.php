@@ -8,8 +8,9 @@ class Auth extends Database
       $stmt = self::connect()->prepare("SELECT username FROM account WHERE username = :username");
       $stmt->bindParam(':username', $username);
       $stmt->execute();
-  
-      return true;
+
+      return (bool) $stmt->fetch();
+
     } catch (PDOException $e) {
       self::error("db_error", $e->getCode(), $e->getMessage());
     }
