@@ -16,6 +16,20 @@ class Auth extends Database
     }
   }
 
+  public static function checkEmail($email)
+  {
+    try {
+      $stmt = self::connect()->prepare("SELECT email FROM account WHERE email = :email");
+      $stmt->bindParam(':email', $email);
+      $stmt->execute();
+
+      return (bool) $stmt->fetch();
+
+    } catch (PDOException $e) {
+      self::error("db_error", $e->getCode(), $e->getMessage());
+    }
+  }
+
   public static function Register($username, $email, $salt, $verifier)
   {
     try {

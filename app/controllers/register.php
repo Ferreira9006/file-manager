@@ -14,7 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = strtoupper($email);
 
     if (Auth::checkUsername($username)) {
-      echo "<div class='alert alert-danger' role='alert'> Username already exists. </div>";
+      echo "<div class='alert alert-danger' role='alert'> The entered username already exists. </div>";
+      return;
+    }
+
+    if (Auth::checkEmail($email)) {
+      echo "<div class='alert alert-danger' role='alert'> The entered email is already in use. </div>";
       return;
     }
 
@@ -24,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (Auth::Register($username, $email, $salt, $verifier)){
-      echo "<div class='alert alert-success' role='alert'> Account was created. </div>";
+      echo "<div class='alert alert-success' role='alert'> Congratulations! Account <b>{$username}</b> was created. </div>";
       return;
     }
 }
